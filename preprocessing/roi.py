@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def find_pupil_center(image, min_radius=10, max_radius=60):
+def find_pupil_center(image, min_radius=5, max_radius=15):
     """
     Use Hough Circle Transform to find the pupil center in a clean
     grayscale IR eye image.
