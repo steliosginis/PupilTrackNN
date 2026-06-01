@@ -6,7 +6,7 @@ from loader import load_images
 
 # ── Constants ────────────────────────────────────────────────────────────────
 TARGET_SIZE   = (128, 128)
-RAW_DIR       = r"D:\PupilTrackNN\data\raw"
+RAW_DIR       = r"D:\PupilTrackNN\data\raw\pupil_images\pupil_images"
 ANNOTATED_DIR = r"D:\PupilTrackNN\data\annotated"
 LABELS_CSV    = r"D:\PupilTrackNN\data\annotated\labels.csv"
 
@@ -37,7 +37,7 @@ def apply_clahe(image):
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     return clahe.apply(image)
 
-def find_pupil(image, min_radius=5, max_radius=15):
+def find_pupil(image, min_radius=4, max_radius=10):
     """
     Use Hough Circle Transform to find the pupil.
     Expects a preprocessed 128x128 grayscale image.
@@ -51,8 +51,8 @@ def find_pupil(image, min_radius=5, max_radius=15):
         cv2.HOUGH_GRADIENT,
         dp=1.2,
         minDist=30,
-        param1=10,
-        param2=5,
+        param1=50,
+        param2=15,
         minRadius=min_radius,
         maxRadius=max_radius
     )
